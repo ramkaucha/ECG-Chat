@@ -9,6 +9,16 @@ import argparse
 def prepare(args):
     data_dir = args.data_dir
     df = pd.read_csv(os.path.join(data_dir, "record_list.csv"))
+    
+    missing_path_file = os.path.join(data_dir, "missing_path.txt")
+    if os.path.exists(missing_path_file):
+        with open(missing_path_file, "r") as f:
+            missing_paths= [line.strip() for line in f if line.strip()]
+        df = df[~df["path"].isin(missing_paths)]
+        print(f"Filtered out {len(missing_paths)} records with missing paths.")
+    else:
+        print("No missing path file found, proceeding with all records.")
+    
     print("Start calculating waveform data...")
     data_dict = calculate_waveforms(data_dir, df.path.values)
     
