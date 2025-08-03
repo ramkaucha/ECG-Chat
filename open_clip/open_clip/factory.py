@@ -252,6 +252,8 @@ def create_model(
         model_cfg = dict(model_cfg, **model_kwargs)  # merge cfg dict w/ kwargs (kwargs overrides cfg)
 
         assert "multimodal_cfg" in model_cfg
+        if "signal_encoder" in model_cfg:
+            model_cfg["ecg_cfg"] = model_cfg["signal_encoder"]
         model = CoCa(**model_cfg, cast_dtype=cast_dtype)
         if precision in ("fp16", "bf16"):
             dtype = torch.float16 if 'fp16' in precision else torch.bfloat16

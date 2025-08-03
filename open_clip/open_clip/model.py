@@ -21,6 +21,7 @@ from .timm_model import TimmModel
 from .transformer import LayerNormFp32, LayerNorm, QuickGELU, Attention, VisionTransformer, TextTransformer,\
     EcgTransformer, text_global_pool
 from .utils import to_2tuple
+from .signal_encoder import SignalEncoder
 
 
 @dataclass
@@ -198,41 +199,12 @@ def _build_ecg_tower(
         quick_gelu: bool = False,
         cast_dtype: Optional[torch.dtype] = None
 ):
-    if isinstance(ecg_cfg, dict):
-        ecg_cfg = CLIPEcgCfg(**ecg_cfg)
-
-    act_layer = QuickGELU if quick_gelu else nn.GELU
-
-    ecg_heads = ecg_cfg.width // ecg_cfg.head_width
-    norm_layer = LayerNormFp32 if cast_dtype in (torch.float16, torch.bfloat16) else LayerNorm
-    if ecg_cfg.norm_kwargs:
-        norm_layer = partial(norm_layer, **ecg_cfg.norm_kwargs)
-    if ecg_cfg.act_kwargs is not None:
-        act_layer = partial(act_layer, **ecg_cfg.act_kwargs)
-
-    ecg = EcgTransformer(
-        seq_length=ecg_cfg.seq_length,
-        patch_size=ecg_cfg.patch_size,
-        lead_num=ecg_cfg.lead_num,
-        width=ecg_cfg.width,
-        layers=ecg_cfg.layers,
-        heads=ecg_heads,
-        mlp_ratio=ecg_cfg.mlp_ratio,
-        ls_init_value=ecg_cfg.ls_init_value,
-        patch_dropout=ecg_cfg.patch_dropout,
-        attentional_pool=ecg_cfg.attentional_pool,
-        attn_pooler_queries=ecg_cfg.attn_pooler_queries,
-        attn_pooler_heads=ecg_cfg.attn_pooler_heads,
-        pos_embed_type=ecg_cfg.pos_embed_type,
-        no_ln_pre=ecg_cfg.no_ln_pre,
-        final_ln_after_pool=ecg_cfg.final_ln_after_pool,
-        pool_type=ecg_cfg.pool_type,
-        output_tokens=ecg_cfg.output_tokens,
-        output_dim=embed_dim,
-        act_layer=act_layer,
-        norm_layer=norm_layer,
-        )
-    return ecg
+    return EcgTransformer(
+        embed_dim=embed_dim,
+        ecg_cfg=ecg_cfg,
+        quick_gelu=quick_gelu,
+        cast_dtype=cast_dtype
+    )
 
 def _build_text_tower(
         embed_dim: int,
