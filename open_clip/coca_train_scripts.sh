@@ -5,3 +5,4 @@ torchrun --nproc_per_node 8 -m training.main --save-frequency 1 --val-frequency 
 # --ptbxl-path="/path/to/ptb-xl" --cpsc2018-path="/path/to/icbeb" --champan-path="/path/to/Champan-Shaoxing" --sph-path="/path/to/SPH" --lock-text --grad-clip-norm 0.5
 
 
+♥

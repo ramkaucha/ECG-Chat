@@ -1,0 +1,132 @@
+.
+├── README.md
+├── create_struct.py
+├── data
+│   ├── CPSC2018
+│   │   ├── training_set
+│   │   │   └── REFERENCE.csv
+│   │   └── validation_set
+│   │       └── REFERENCE.csv
+│   ├── champan-shaoxing
+│   │   └── diagnostics.csv
+│   ├── preprocess
+│   │   ├── preprocess_cpsc2018.py
+│   │   ├── preprocess_csd.py
+│   │   ├── preprocess_mimic_iv_ecg.py
+│   │   ├── preprocess_ptbxl.py
+│   │   ├── preprocess_sph.py
+│   │   └── signal_analysis.py
+│   ├── ptb-xl
+│   │   ├── ptbxl_database.csv
+│   │   ├── ptbxl_database_form.csv
+│   │   ├── ptbxl_database_rhythm.csv
+│   │   ├── ptbxl_database_sub_class.csv
+│   │   ├── ptbxl_database_super_class.csv
+│   │   ├── ptbxl_database_translated.csv
+│   │   └── ptbxl_database_translated_reference.csv
+│   └── sph
+│       └── metadata.csv
+├── llava
+│   ├── __init__.py
+│   ├── llava
+│   │   ├── __init__.py
+│   │   ├── constants.py
+│   │   ├── conversation.py
+│   │   ├── mm_utils.py
+│   │   ├── model
+│   │   │   ├── __init__.py
+│   │   │   ├── apply_delta.py
+│   │   │   ├── builder.py
+│   │   │   ├── consolidate.py
+│   │   │   ├── language_model
+│   │   │   │   ├── llava_llama.py
+│   │   │   │   ├── llava_mistral.py
+│   │   │   │   └── llava_mpt.py
+│   │   │   ├── llava_arch.py
+│   │   │   ├── make_delta.py
+│   │   │   ├── multimodal_encoder
+│   │   │   │   ├── .ipynb_checkpoints
+│   │   │   │   │   └── clip_encoder-checkpoint.py
+│   │   │   │   ├── builder.py
+│   │   │   │   └── clip_encoder.py
+│   │   │   ├── multimodal_projector
+│   │   │   │   └── builder.py
+│   │   │   └── utils.py
+│   │   ├── scripts
+│   │   │   ├── zero2.json
+│   │   │   ├── zero3.json
+│   │   │   └── zero3_offload.json
+│   │   ├── train
+│   │   │   ├── llama_flash_attn_monkey_patch.py
+│   │   │   ├── llama_xformers_attn_monkey_patch.py
+│   │   │   ├── llava_trainer.py
+│   │   │   ├── train.py
+│   │   │   ├── train_mem.py
+│   │   │   └── train_xformers.py
+│   │   └── utils.py
+│   ├── llm_finetune_lora.sh
+│   ├── llm_pretrain.sh
+│   └── playground
+│       └── data
+│           ├── conversation.json
+│           ├── diagnosis.json
+│           ├── ecg_instruct_45k.json
+│           └── prompts
+│               ├── conversation.txt
+│               └── daignosis.txt
+├── open_clip
+│   ├── __init__.py
+│   ├── coca_eval_scripts.sh
+│   ├── coca_train_scripts.sh
+│   ├── open_clip
+│   │   ├── __init__.py
+│   │   ├── augmentations
+│   │   │   ├── RandomMasking.py
+│   │   │   ├── __init__.py
+│   │   │   ├── baseline_wander.py
+│   │   │   └── cutmix.py
+│   │   ├── bpe_simple_vocab_16e6.txt.gz
+│   │   ├── coca_model.py
+│   │   ├── constants.py
+│   │   ├── convert.py
+│   │   ├── ecg_transform.py
+│   │   ├── factory.py
+│   │   ├── hf_configs.py
+│   │   ├── hf_model.py
+│   │   ├── loss.py
+│   │   ├── model.py
+│   │   ├── model_configs
+│   │   │   └── coca_ViT-B-32.json
+│   │   ├── modified_resnet.py
+│   │   ├── openai.py
+│   │   ├── pos_embed.py
+│   │   ├── pretrained.py
+│   │   ├── push_to_hf_hub.py
+│   │   ├── timm_model.py
+│   │   ├── tokenizer.py
+│   │   ├── transform.py
+│   │   ├── transformer.py
+│   │   ├── utils.py
+│   │   └── version.py
+│   └── training
+│       ├── .gitignore
+│       ├── __init__.py
+│       ├── data.py
+│       ├── distributed.py
+│       ├── evaluate.py
+│       ├── evaluation
+│       │   ├── CKEPE_prompt.json
+│       │   ├── __init__.py
+│       │   ├── linear_probe.py
+│       │   ├── metadata.py
+│       │   ├── metrics.py
+│       │   └── zero_shot.py
+│       ├── file_utils.py
+│       ├── logger.py
+│       ├── main.py
+│       ├── params.py
+│       ├── precision.py
+│       ├── profiler.py
+│       ├── scheduler.py
+│       └── train.py
+└── structure.txt
